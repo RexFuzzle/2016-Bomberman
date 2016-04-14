@@ -40,9 +40,9 @@ namespace TestHarness.Util
                 StartInfo =
                 {
                     WorkingDirectory = workDir,
-                    FileName = Environment.OSVersion.Platform == PlatformID.Unix && !isMono ? "/bin/bash" : processName,
+                    FileName =  processName,
                     Arguments =
-						Environment.OSVersion.Platform == PlatformID.Unix && !isMono ? processName + " " + processArgs : processArgs,
+ processArgs,
                     CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden,
                     UseShellExecute = false,

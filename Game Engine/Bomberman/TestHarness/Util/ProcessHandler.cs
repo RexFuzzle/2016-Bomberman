@@ -40,7 +40,7 @@ namespace TestHarness.Util
                 StartInfo =
                 {
                     WorkingDirectory = workDir,
-                    FileName = Environment.OSVersion.Platform == PlatformID.Unix && !isMono ? "/bin/bash " : processName,
+                    FileName = Environment.OSVersion.Platform == PlatformID.Unix && !isMono ? "/bin/bash" : processName,
                     Arguments =
 						Environment.OSVersion.Platform == PlatformID.Unix && !isMono ? processName + " " + processArgs : processArgs,
                     CreateNoWindow = true,
@@ -63,7 +63,7 @@ namespace TestHarness.Util
             {
                 return StartProcessCommon();
             }
-            
+
             using (
                 var newErrorMode =
                     new ChangeErrorMode(ChangeErrorMode.ErrorModes.FailCriticalErrors |
@@ -80,7 +80,7 @@ namespace TestHarness.Util
             _processToRun.Start();
             _processToRun.BeginOutputReadLine();
             _processToRun.BeginErrorReadLine();
-            _processToRun.PriorityClass = ProcessPriorityClass.AboveNormal;
+            // _processToRun.PriorityClass = ProcessPriorityClass.AboveNormal;
 
             _logger.LogInfo("Bot has " + (TimeSpan.FromSeconds(Settings.Default.MaxBotRuntimeSeconds * 2).TotalMilliseconds) + "ms to run");
             var cleanExit = true;

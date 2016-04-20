@@ -41,8 +41,7 @@ namespace TestHarness.Util
                 {
                     WorkingDirectory = workDir,
                     FileName =  processName,
-                    Arguments =
- processArgs,
+                    Arguments = processArgs,
                     CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden,
                     UseShellExecute = false,
@@ -82,9 +81,12 @@ namespace TestHarness.Util
             _processToRun.BeginErrorReadLine();
             // _processToRun.PriorityClass = ProcessPriorityClass.AboveNormal;
 
-            _logger.LogInfo("Bot has " + (TimeSpan.FromSeconds(Settings.Default.MaxBotRuntimeSeconds * 2).TotalMilliseconds) + "ms to run");
             var cleanExit = true;
-            if (LimitExecutionTime) cleanExit = _processToRun.WaitForExit((int) (TimeSpan.FromSeconds(Settings.Default.MaxBotRuntimeSeconds * 2).TotalMilliseconds));
+            if (LimitExecutionTime)
+            {
+                _logger.LogInfo("Bot has " + (TimeSpan.FromSeconds(Settings.Default.MaxBotRuntimeSeconds * 2).TotalMilliseconds) + "ms to run before it will be forcefully killed");
+                cleanExit = _processToRun.WaitForExit((int) (TimeSpan.FromSeconds(Settings.Default.MaxBotRuntimeSeconds * 2).TotalMilliseconds));
+            }
 
             if (!cleanExit)
             {

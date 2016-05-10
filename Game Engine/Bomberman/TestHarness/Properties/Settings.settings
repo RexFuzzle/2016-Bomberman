@@ -15,10 +15,10 @@
       <Value Profile="(Default)">node.exe</Value>
     </Setting>
     <Setting Name="PathToPython2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">python.exe</Value>
+      <Value Profile="(Default)">python</Value>
     </Setting>
     <Setting Name="PathToPython3" Type="System.String" Scope="User">
-      <Value Profile="(Default)">python.exe</Value>
+      <Value Profile="(Default)">python</Value>
     </Setting>
     <Setting Name="PathToPythonPackageIndex" Type="System.String" Scope="User">
       <Value Profile="(Default)">pip</Value>

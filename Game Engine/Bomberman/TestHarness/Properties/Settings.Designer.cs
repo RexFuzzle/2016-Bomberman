@@ -9,20 +9,20 @@
 //------------------------------------------------------------------------------
 
 namespace TestHarness.Properties {
-    
-    
+
+
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
+
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
+
         public static Settings Default {
             get {
                 return defaultInstance;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\msbuild.exe")]
@@ -34,7 +34,7 @@ namespace TestHarness.Properties {
                 this["PathToMSBuild"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("mvn.bat")]
@@ -46,7 +46,7 @@ namespace TestHarness.Properties {
                 this["PathToMaven"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("java")]
@@ -58,7 +58,7 @@ namespace TestHarness.Properties {
                 this["PathToJava"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("node.exe")]
@@ -70,10 +70,10 @@ namespace TestHarness.Properties {
                 this["PathToNode"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("python.exe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("python")]
         public string PathToPython2 {
             get {
                 return ((string)(this["PathToPython2"]));
@@ -82,10 +82,10 @@ namespace TestHarness.Properties {
                 this["PathToPython2"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("python.exe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("python")]
         public string PathToPython3 {
             get {
                 return ((string)(this["PathToPython3"]));
@@ -94,7 +94,7 @@ namespace TestHarness.Properties {
                 this["PathToPython3"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("pip")]
@@ -106,7 +106,7 @@ namespace TestHarness.Properties {
                 this["PathToPythonPackageIndex"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("X:\\NodeJS\\npm.cmd")]
@@ -118,7 +118,7 @@ namespace TestHarness.Properties {
                 this["PathToNpm"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("state.json")]
@@ -130,7 +130,7 @@ namespace TestHarness.Properties {
                 this["StateFileName"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("map.txt")]
@@ -142,7 +142,7 @@ namespace TestHarness.Properties {
                 this["MapFileName"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("log.txt")]
@@ -154,7 +154,7 @@ namespace TestHarness.Properties {
                 this["LogFileName"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("bot.json")]
@@ -166,7 +166,7 @@ namespace TestHarness.Properties {
                 this["BotMetaFileName"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
@@ -178,7 +178,7 @@ namespace TestHarness.Properties {
                 this["MaxBotRuntimeSeconds"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("move.txt")]

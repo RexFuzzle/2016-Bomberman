@@ -85,7 +85,7 @@ namespace TestHarness.Properties {
 
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("python")]
+        [global::System.Configuration.DefaultSettingValueAttribute("python3")]
         public string PathToPython3 {
             get {
                 return ((string)(this["PathToPython3"]));

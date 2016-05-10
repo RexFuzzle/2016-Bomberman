@@ -18,7 +18,7 @@
       <Value Profile="(Default)">python</Value>
     </Setting>
     <Setting Name="PathToPython3" Type="System.String" Scope="User">
-      <Value Profile="(Default)">python</Value>
+      <Value Profile="(Default)">python3</Value>
     </Setting>
     <Setting Name="PathToPythonPackageIndex" Type="System.String" Scope="User">
       <Value Profile="(Default)">pip</Value>

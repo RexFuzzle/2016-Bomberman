@@ -40,7 +40,7 @@ namespace TestHarness.Util
                 StartInfo =
                 {
                     WorkingDirectory = workDir,
-                    FileName = processName,
+                    FileName =  processName,
                     Arguments = processArgs,
                     CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden,
@@ -62,7 +62,7 @@ namespace TestHarness.Util
             {
                 return StartProcessCommon();
             }
-            
+
             using (
                 var newErrorMode =
                     new ChangeErrorMode(ChangeErrorMode.ErrorModes.FailCriticalErrors |
@@ -79,10 +79,7 @@ namespace TestHarness.Util
             _processToRun.Start();
             _processToRun.BeginOutputReadLine();
             _processToRun.BeginErrorReadLine();
-            if (Environment.OSVersion.Platform != PlatformID.Unix) {
-                // On Linux root permissions are required to change the PriorityClass
-                _processToRun.PriorityClass = ProcessPriorityClass.AboveNormal;
-            }
+            // _processToRun.PriorityClass = ProcessPriorityClass.AboveNormal;
 
             var cleanExit = true;
             if (LimitExecutionTime)

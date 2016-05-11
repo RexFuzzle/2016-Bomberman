@@ -11,6 +11,12 @@ For more information about the challenge see the [Challenge website](http://chal
 4. Submit
 5. Win
 
+## Linux/OSX Instructions
+
+1. Clone this repo and cd into folder
+2. run `xbuild Game\ Engine/Bomberman/Bomberman.csproj`
+3. You can now run the exe with the following: `mono 'Game Engine/Bomberman/bin/Debug/Bomberman.exe' -c 4`. This with start the engine with 4 console players. use the `-b` flag and the location of the bot to use the bots.
+
 ## Project Structure
 
 In this project you will find everything you need to build and run a bot on your local machine.  This project contains the following:

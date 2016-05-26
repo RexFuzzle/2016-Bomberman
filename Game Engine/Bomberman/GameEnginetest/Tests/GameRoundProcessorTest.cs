@@ -250,6 +250,15 @@ namespace GameEnginetest.Tests
         [Test]
         public void TwoBombsSameEntity()
         {
+            /* #######
+             * #     #
+             * #     #
+             * # a+b #
+             * #     #
+             * #     #
+             * #######
+             */
+
             var block = _gameMap.GetBlockAtLocation(3, 3);
             block.SetEntity(new DestructibleWallEntity());
 
@@ -340,6 +349,14 @@ namespace GameEnginetest.Tests
         [Test]
         public void ChainBombPointAllocations()
         {
+            /* #######
+             * #  +  #
+             * #  a  #
+             * #     #
+             * #     #
+             * #  b  #
+             * #######
+             */
             var block = _gameMap.GetBlockAtLocation(1, 3);
             block.SetEntity(new DestructibleWallEntity());
 
@@ -375,8 +392,210 @@ namespace GameEnginetest.Tests
             processor = new GameRoundProcessor(1, _gameMap, _logger);
             processor.ProcessRound();
 
-            Assert.AreEqual(10, player1.PlayerEntity.Points - player1.PlayerEntity.MapCoveragePoints, "Player 1 should have recieved points for destroying wall");
-            Assert.AreEqual(10, player2.PlayerEntity.Points - player2.PlayerEntity.MapCoveragePoints, "Player 2 should have recieved points for destroying wall");
+            Assert.AreEqual(10, player1.PlayerEntity.Points - player1.PlayerEntity.MapCoveragePoints, "Player 1 should have received points for destroying wall");
+            Assert.AreEqual(10, player2.PlayerEntity.Points - player2.PlayerEntity.MapCoveragePoints, "Player 2 should have received points for destroying wall");
+        }
+
+        [Test]
+        public void ChainBombPointAllocationsSamePlayer()
+        {
+            //   +
+            //   5
+            // 
+            // 
+            //   1
+            // 
+            // 10 points.
+
+            var block = _gameMap.GetBlockAtLocation(1, 3);
+            block.SetEntity(new DestructibleWallEntity());
+
+            var player2 = _players[1];
+            MovePlayerToLocation(player2, 4, 2);
+
+            var player1 = _players[0];
+            player1.PlayerEntity.BombRadius = 5;
+            player1.PlayerEntity.BombBag = 2;
+
+            MovePlayerToLocation(player1, 5, 3);
+
+            var processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.AddPlayerCommand(player1, new PlaceBombCommand(10));
+            processor.ProcessRound();
+
+            var bomb = _gameMap.GetPlayerBombs(player1.PlayerEntity).FirstOrDefault();
+
+            MovePlayerToLocation(player1, 2, 3);
+
+            processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.AddPlayerCommand(player1, new PlaceBombCommand(10));
+            processor.ProcessRound();
+
+            MovePlayerToLocation(player1, 3, 2);
+
+            while (bomb != null && !bomb.IsExploding)
+            {
+                processor = new GameRoundProcessor(1, _gameMap, _logger);
+                processor.ProcessRound();
+            }
+            //Process another round to assign points
+            processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.ProcessRound();
+
+            Assert.AreEqual(10, player1.PlayerEntity.Points - player1.PlayerEntity.MapCoveragePoints, "Player 1 should have received points for destroying wall");
+        }
+
+        [Test]
+        public void ChainBombPointAllocationsForumScenario0()
+        {
+            //   +
+            // 
+            // + 4 1
+            // 
+            //   +
+            // 
+            // 30 points.
+
+            var player2 = _players[1];
+            MovePlayerToLocation(player2, 2, 2);
+
+            var player1 = _players[0];
+            player1.PlayerEntity.BombRadius = 5;
+            player1.PlayerEntity.BombBag = 2;
+            MovePlayerToLocation(player1, 5, 3);
+
+            _gameMap.GetBlockAtLocation(3, 1).SetEntity(new DestructibleWallEntity());
+            _gameMap.GetBlockAtLocation(1, 3).SetEntity(new DestructibleWallEntity());
+            _gameMap.GetBlockAtLocation(3, 5).SetEntity(new DestructibleWallEntity());
+
+            var processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.AddPlayerCommand(player1, new PlaceBombCommand(10));
+            processor.ProcessRound();
+
+            var bomb = _gameMap.GetPlayerBombs(player1.PlayerEntity).FirstOrDefault();
+
+            MovePlayerToLocation(player1, 3, 3);
+
+            processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.AddPlayerCommand(player1, new PlaceBombCommand(10));
+            processor.ProcessRound();
+
+            MovePlayerToLocation(player1, 2, 4);
+
+            while (bomb != null && !bomb.IsExploding)
+            {
+                processor = new GameRoundProcessor(1, _gameMap, _logger);
+                processor.ProcessRound();
+            }
+            //Process another round to assign points
+            processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.ProcessRound();
+
+            Assert.AreEqual(30, player1.PlayerEntity.Points - player1.PlayerEntity.MapCoveragePoints, "Player 1 should have received points for destroying wall");
+        }
+
+        [Test]
+        public void ChainBombPointAllocationsForumScenario1()
+        {
+            //   +
+            // 
+            // + 1 4
+            // 
+            //   +
+            // 
+            // 30 points.
+
+            var player2 = _players[1];
+            MovePlayerToLocation(player2, 2, 2);
+
+            var player1 = _players[0];
+            player1.PlayerEntity.BombRadius = 5;
+            player1.PlayerEntity.BombBag = 2;
+            MovePlayerToLocation(player1, 3, 3);
+
+            _gameMap.GetBlockAtLocation(3, 1).SetEntity(new DestructibleWallEntity());
+            _gameMap.GetBlockAtLocation(1, 3).SetEntity(new DestructibleWallEntity());
+            _gameMap.GetBlockAtLocation(3, 5).SetEntity(new DestructibleWallEntity());
+
+            var processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.AddPlayerCommand(player1, new PlaceBombCommand(10));
+            processor.ProcessRound();
+
+            var bomb = _gameMap.GetPlayerBombs(player1.PlayerEntity).FirstOrDefault();
+
+            MovePlayerToLocation(player1, 5, 3);
+
+            processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.AddPlayerCommand(player1, new PlaceBombCommand(10));
+            processor.ProcessRound();
+
+            MovePlayerToLocation(player1, 4, 2);
+
+            while (bomb != null && !bomb.IsExploding)
+            {
+                processor = new GameRoundProcessor(1, _gameMap, _logger);
+                processor.ProcessRound();
+            }
+            //Process another round to assign points
+            processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.ProcessRound();
+
+            Assert.AreEqual(30, player1.PlayerEntity.Points - player1.PlayerEntity.MapCoveragePoints, "Player 1 should have received points for destroying wall");
+        }
+
+        [Test]
+        public void ChainBombPointAllocationsForumScenario2()
+        {
+            //   +
+            // 
+            // + 531
+            // 
+            //   +
+            // 
+            // 30 points.
+
+            var player2 = _players[1];
+            MovePlayerToLocation(player2, 2, 2);
+
+            var player1 = _players[0];
+            player1.PlayerEntity.BombRadius = 5;
+            player1.PlayerEntity.BombBag = 3;
+            MovePlayerToLocation(player1, 5, 3);
+
+            _gameMap.GetBlockAtLocation(3, 1).SetEntity(new DestructibleWallEntity());
+            _gameMap.GetBlockAtLocation(1, 3).SetEntity(new DestructibleWallEntity());
+            _gameMap.GetBlockAtLocation(3, 5).SetEntity(new DestructibleWallEntity());
+
+            var processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.AddPlayerCommand(player1, new PlaceBombCommand(10));
+            processor.ProcessRound();
+
+            var bomb = _gameMap.GetPlayerBombs(player1.PlayerEntity).FirstOrDefault();
+
+            MovePlayerToLocation(player1, 4, 3);
+
+            processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.AddPlayerCommand(player1, new PlaceBombCommand(10));
+            processor.ProcessRound();
+
+            MovePlayerToLocation(player1, 3, 3);
+
+            processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.AddPlayerCommand(player1, new PlaceBombCommand(10));
+            processor.ProcessRound();
+
+            MovePlayerToLocation(player1, 2, 4);
+
+            while (bomb != null && !bomb.IsExploding)
+            {
+                processor = new GameRoundProcessor(1, _gameMap, _logger);
+                processor.ProcessRound();
+            }
+            //Process another round to assign points
+            processor = new GameRoundProcessor(1, _gameMap, _logger);
+            processor.ProcessRound();
+
+            Assert.AreEqual(30, player1.PlayerEntity.Points - player1.PlayerEntity.MapCoveragePoints, "Player 1 should have received points for destroying wall");
         }
 
         [Test]

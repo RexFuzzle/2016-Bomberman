@@ -72,7 +72,7 @@ namespace GameEngine.Engine
         }
 
         /// <summary>
-        /// Starts the game.  Should be called after prepare game.  
+        /// Starts the game.  Should be called after prepare game.
         /// This will notify all registered players that the game has started, and they can start sending commands to the engine.
         /// </summary>
         public void StartNewGame()
@@ -210,9 +210,9 @@ namespace GameEngine.Engine
                 player.PlayerKilled(_gameMap);
             }
 
-            _currentRound++;
             _roundProcessor = new GameRoundProcessor(_currentRound, _gameMap, Logger, _playerKillPoints);
             _gameMap.CurrentRound = _currentRound;
+            _currentRound++;
         }
 
         public ILogger Logger

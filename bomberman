@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/bin/mono 'Game Engine/Bomberman/bin/Debug/Bomberman.exe' "$@"

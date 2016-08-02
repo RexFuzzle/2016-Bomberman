@@ -1,9 +1,10 @@
 # UNIX/OSX Instructions
 
-You need mono then:
+Do this:
 
+0. ```sudp apt-get install mono-devel```
 1. ```git@github.com:RexFuzzle/2016-Bomberman.git```
-2. ```cd 2016-Bomberman```
+2. ```cd 2016-Bomberman/Game\ Engine/Bomberman```
 3. ```xbuild Bomberman.csproj /p:TargetFrameworkVersion="v4.5"```
 4. The shell script bomberman in the root of the repo should now work with ```./bomberman```
 
